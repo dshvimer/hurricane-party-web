@@ -13,7 +13,7 @@ npm install --global yarn
 ```yarn``` is a package manager just like ```npm```. We will be using it instead of ```npm```
 
 Once ```yarn``` is installed we need to install all dependencies like: React, Storybook, Material-UI, etc.
-Run the command:
+I already added the dependencies so simply run:
 
 ```
 yarn
@@ -26,6 +26,8 @@ The project should be good to go now.
 Run the command ```yarn storybook```
 
 This should start the storybook server at localhost:9009. If thats not correct just check the output in the terminal. It will tell you where storybook is running. When you make changes to files, storybook will automatically reload everything. If things aren't updating just refresh the page. Make sure to watch the terminal for errors.
+
+New components should go into the ```src/components``` folder. All component names should be capitalized. This is a good way to differentiate between standard HTML elements and custom React components since we can mix and match. File names should match the component names. None of this is required by React, just the styleguide that we are following.
 
 ### Git workflow
 
