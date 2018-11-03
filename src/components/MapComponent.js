@@ -1,7 +1,10 @@
 import React from "react"
+import axios from "axios"
 
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+
+
 
 const MyMapComponent = compose(
   withProps({
@@ -28,8 +31,22 @@ class MyFancyComponent extends React.PureComponent {
     isMarkerShown: false,
   }
 
+  async getHurricanes(){
+
+    try {
+      const response = await axios.get('https://api.aerisapi.com/tropicalcyclones/?&filter=atlantic&fields=track,position&limit=1&format=json&client_id=hrpGkmHHfpY7REeArosEn&client_secret=5H3Pa7qgeaFtjOyUQkO8OrVNyDaHYSj7QOGJ0jxC')
+      console.log(response)
+    }
+    catch (error){
+
+      console.log(error)
+      
+    }
+  }
+
   componentDidMount() {
     this.delayedShowMarker()
+    this.getHurricanes()
   }
 
   delayedShowMarker = () => {
