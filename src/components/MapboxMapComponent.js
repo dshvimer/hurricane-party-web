@@ -2,14 +2,6 @@
 import React from 'react'
 import ReactMapboxGl, { Layer,  Source } from "react-mapbox-gl";
 
-/**** Aeris Weather API Stuff
- * 
- * Access ID: hrpGkmHHfpY7REeArosEn
- * Secret Key: 5H3Pa7qgeaFtjOyUQkO8OrVNyDaHYSj7QOGJ0jxC
- * 
- *
- */
-
  //remove touch mouse controls
 
 const Map = ReactMapboxGl({
@@ -19,10 +11,10 @@ const Map = ReactMapboxGl({
 const RASTER_SOURCE_OPTIONS = {
   "type": "raster",
   "tiles": [
-    'https://maps1.aerisapi.com/hrpGkmHHfpY7REeArosEn_5H3Pa7qgeaFtjOyUQkO8OrVNyDaHYSj7QOGJ0jxC/radar/{z}/{x}/{y}/current.png',
-    'https://maps2.aerisapi.com/hrpGkmHHfpY7REeArosEn_5H3Pa7qgeaFtjOyUQkO8OrVNyDaHYSj7QOGJ0jxC/radar/{z}/{x}/{y}/current.png',
-    'https://maps3.aerisapi.com/hrpGkmHHfpY7REeArosEn_5H3Pa7qgeaFtjOyUQkO8OrVNyDaHYSj7QOGJ0jxC/radar/{z}/{x}/{y}/current.png',
-    'https://maps4.aerisapi.com/hrpGkmHHfpY7REeArosEn_5H3Pa7qgeaFtjOyUQkO8OrVNyDaHYSj7QOGJ0jxC/radar/{z}/{x}/{y}/current.png'
+    'https://maps1.aerisapi.com/[ID]_[KEY]/radar/{z}/{x}/{y}/current.png',
+    'https://maps2.aerisapi.com/_/radar/{z}/{x}/{y}/current.png',
+    'https://maps3.aerisapi.com/_/radar/{z}/{x}/{y}/current.png',
+    'https://maps4.aerisapi.com/_/radar/{z}/{x}/{y}/current.png'
   ],
   "tileSize": 256
 }
