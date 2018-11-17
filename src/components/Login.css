@@ -1,0 +1,12 @@
+.cardcss {
+  width: 300px;
+  height: 440px;
+  opacity: 0.89;
+}
+.cardcss2 {
+  width: 300px;
+  height: 55px;
+  opacity: 0.89;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12px;
+}
