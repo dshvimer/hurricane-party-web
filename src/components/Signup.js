@@ -19,9 +19,11 @@ class Signup extends Component {
       <div className="App">
         <Card className="cardcss">
           <header className="header" />
+          <Grid container justify="center" alignItems="center">
           <CardContent>
             <TextField label="Username" inputType="Username" name="Username" />
           </CardContent>
+          
           <CardContent>
             <TextField
               label="Password"
@@ -38,6 +40,7 @@ class Signup extends Component {
               name="password"
             />
           </CardContent>
+          </Grid>
           <br />
           <br />
           <Grid container justify="center" alignItems="center">
