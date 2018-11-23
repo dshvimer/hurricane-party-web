@@ -1,0 +1,32 @@
+.Conversation {
+    display:flex;
+    flex-direction: column;
+
+  }
+
+.Conversation-container{
+    width: 500px;
+}
+
+.Conversation-bubbleSender{
+    background: blue;
+    max-width: 70%;
+    padding: 15px;
+    border-radius: 25px;
+    align-self: flex-end;
+    
+}
+
+.Conversation-bubbleReciever{
+    background: rgba(236, 225, 225, 0.61);
+    max-width: 70%;
+    padding: 15px;
+    border-radius: 80px;
+    align-self: flex-start;
+    
+}
+
+.Conversation-meaasgeBoxContainer{
+    align-self: flex-end;
+    
+}
