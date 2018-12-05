@@ -28,6 +28,10 @@ import StripeCheckout from 'react-stripe-checkout';
 import { Card, CardContent } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
+
+const STRIPE_KEY = process.env.REACT_APP_STRIPE_KEY || process.env.STORYBOOK_STRIPE_KEY
+
+
 export default class TakeMoney extends React.Component {
   onToken = (token) => {
     fetch('/save-stripe-token', {
@@ -51,7 +55,7 @@ export default class TakeMoney extends React.Component {
           <CardContent>
             <StripeCheckout
                 token={this.onToken}
-                stripeKey="pk_test_48F9qANFqHoe3Is8fFanhkOy"        //Api key from -- https://dashboard.stripe.com/account/apikeys
+                stripeKey={STRIPE_KEY}       //Api key from -- https://dashboard.stripe.com/account/apikeys
             />
           </CardContent>
           </Grid>
