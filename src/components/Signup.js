@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import "./Signup.css";
 
+import Locations from './Locations.js'
+
 const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
@@ -39,7 +41,16 @@ class Signup extends Component {
               inputType="password"
               name="password"
             />
+            
           </CardContent>
+          </Grid>
+          
+          <Grid>
+          <CardContent>
+            <Locations/>
+            
+          </CardContent>
+
           </Grid>
           <br />
           <br />
