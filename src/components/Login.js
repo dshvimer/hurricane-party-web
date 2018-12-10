@@ -8,6 +8,12 @@ import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 
 class Login extends React.Component {
+
+  state = {
+    username: '',
+    password: '',
+  }
+
   render() {
     return (
       <div className="login">
@@ -17,15 +23,21 @@ class Login extends React.Component {
         <Grid container justify="center" alignItems="center">
 
           <CardContent>
-            <TextField label="Email" inputType="email" name="email" />
+            <TextField 
+              label="Username" 
+              type="email" 
+              name="username" 
+              onChange={(e) => this.setState({ username: e.target.value })}
+            />
           </CardContent>
          
           <CardContent>
             <TextField
               label="Password"
               id="standard-password-input"
-              inputType="password"
+              type="password"
               name="password"
+              onChange={(e) => this.setState({ password: e.target.value })}
             />
            
           </CardContent>
@@ -35,6 +47,7 @@ class Login extends React.Component {
           <Grid container justify="center" alignItems="center">
 
           <Button
+            onClick={() => this.props.onLogin(this.state)}
             style={{
               fontSize: "13px",
               opacity: 0.8
@@ -53,7 +66,7 @@ class Login extends React.Component {
           <br />
           <Grid container justify="center" alignItems="center">
           <Typography variant="body2" gutterBottom>
-            Don't have an account? Sign-up here!
+            Don't have an account? { this.props.renderSignupLink('Sign-up here!')}
           </Typography>
           </Grid>
         </Card>

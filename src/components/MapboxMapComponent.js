@@ -28,10 +28,11 @@ class MapboxMapComponent extends React.Component {
     return (
       <Map
         style="mapbox://styles/mapbox/streets-v10"
+        scrollZoom={false}
         center = {[-81, 28]}
         zoom={[5.9]}
         containerStyle={{
-          height: "100vh",
+          height: "90vh",
           width: "100vw"
         }}>
         <Source

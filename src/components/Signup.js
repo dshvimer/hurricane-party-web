@@ -5,15 +5,12 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import "./Signup.css";
 
-const styles = theme => ({
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200
-  }
-});
-
 class Signup extends Component {
+  state = {
+    username: '',
+    password: '',
+  }
+
   render() {
     return (
       <div className="App">
@@ -21,23 +18,21 @@ class Signup extends Component {
           <header className="header" />
           <Grid container justify="center" alignItems="center">
           <CardContent>
-            <TextField label="Username" inputType="Username" name="Username" />
+            <TextField 
+              label="Username" 
+              type="email" 
+              name="Username" 
+              onChange={(e) => this.setState({ username: e.target.value })}
+            />
           </CardContent>
           
           <CardContent>
             <TextField
               label="Password"
               id="standard-password-input"
-              inputType="password"
+              type="password"
               name="password"
-            />
-          </CardContent>
-          <CardContent>
-            <TextField
-              label="Password"
-              id="standard-password-input"
-              inputType="password"
-              name="password"
+              onChange={(e) => this.setState({ password: e.target.value })}
             />
           </CardContent>
           </Grid>
@@ -45,6 +40,7 @@ class Signup extends Component {
           <br />
           <Grid container justify="center" alignItems="center">
             <Button
+              onClick={() => this.props.onSignup(this.state)}
               style={{
                 fontSize: "13px",
                 opacity: 0.8
@@ -59,7 +55,7 @@ class Signup extends Component {
           <br />
           <Grid container justify="center" alignItems="center">
             <Typography variant="body2" gutterBottom>
-              Already have an account? Login here!
+              Already have an account? { this.props.renderLoginLink('Login here!')}
             </Typography>
           </Grid>
         </Card>
