@@ -17,6 +17,7 @@ class LoginView extends Component {
     try {
       const res = await authenticate(auth)
       localStorage.setItem('token', res.data.jwt)
+      localStorage.setItem('username', auth.username)
       this.setState({loading: false, authenticated: true})
     }
     catch(e) {

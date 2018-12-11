@@ -17,10 +17,10 @@ class ConversationList extends React.Component {
         <CardContent>
 
         <List dense>
-          {[0, 1, 2, 3].map(value => (
-            <ListItem key={value} button>
+          {this.props.conversations.map(conversation => (
+            <ListItem key={conversation.id} button onClick={() => this.props.goToConversation(conversation)}>
               <Avatar>C</Avatar>
-              <ListItemText primary={`Line item ${value + 1}`} />
+              <ListItemText primary={conversation.participants} />
               <ListItemSecondaryAction>
                 {Time}
               </ListItemSecondaryAction>

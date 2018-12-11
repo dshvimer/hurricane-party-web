@@ -31,6 +31,11 @@ class FeedItem extends React.Component {
         <CardHeader
           title={this.props.post.user.username}
           subheader={date.toDateString()}
+          action={
+            <Button onClick={() => this.props.sendMessageTo(this.props.post.user.username)}>
+              Message
+            </Button>
+          }
         />
         <CardContent>
           <Typography component="p">
@@ -39,8 +44,8 @@ class FeedItem extends React.Component {
         </CardContent>
         <CardActions disableActionSpacing>
           {/* <IconButton aria-label="Add to favorites"> */}
-          {/* <FavoriteIcon /> */}
-          {/* </IconButton> */}
+            {/* <FavoriteIcon /> */}
+            {/* </IconButton> */}
           {
             <IconButton>
               <MoreVertIcon />
@@ -54,7 +59,10 @@ class FeedItem extends React.Component {
                 <ListItem key={comment.id}>
                   <Avatar>P</Avatar>
                   <ListItemText primary={comment.body} />
-                <Divider inset />
+                  <Button onClick={() => this.props.sendMessageTo(comment.user.username)}>
+                    Message
+                  </Button>
+                  <Divider inset />
                 </ListItem>
               )
             })

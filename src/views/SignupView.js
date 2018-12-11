@@ -25,6 +25,7 @@ class SignupView extends Component {
           const auth = await authenticate(user)
           const token = auth.data.jwt
           localStorage.setItem('token', token)
+          localStorage.setItem('username', user.username)
           this.setState({authenticated: true, loading: false})
         }
       }

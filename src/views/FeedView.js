@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { withRouter } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import FeedItem from '../components/FeedItem'
 import NewPost from '../components/NewPost'
 import { createPost, getPosts, createComment } from '../api/posts'
+import { createConversation } from '../api/conversations'
 
 class FeedView extends Component {
 
@@ -70,6 +72,19 @@ class FeedView extends Component {
     this.getPosts(params)
   }
 
+  async sendMessageTo(username) {
+    const conversation = { username }
+    try {
+      const res = await createConversation(conversation)
+      const conversationId = res.data.conversation.id
+      console.log(conversationId)
+      this.props.history.push(`/conversations/${conversationId}`)
+    }
+    catch(e) {
+      console.log(e)
+    }
+  }
+
   render() {
     return (
       <div>
@@ -86,7 +101,7 @@ class FeedView extends Component {
         </AppBar>
         <div className="Feed">
           {
-            this.state.posts.map(post => <FeedItem key={post.id} post={post} addComment={(comment) => this.addComment(comment, post.id)}/>)
+            this.state.posts.map(post => <FeedItem sendMessageTo={(username) => this.sendMessageTo(username)} key={post.id} post={post} addComment={(comment) => this.addComment(comment, post.id)}/>)
           }
           <Button variant="contained" color="primary" className="AddPost" onClick={() => this.setState({creatingPost: true})}>
             Create Post
@@ -102,4 +117,4 @@ class FeedView extends Component {
   }
 }
 
-export default FeedView
+export default withRouter(FeedView)
