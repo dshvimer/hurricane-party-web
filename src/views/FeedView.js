@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 import Button from '@material-ui/core/Button'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
 
 import FeedItem from '../components/FeedItem'
 import NewPost from '../components/NewPost'
@@ -11,16 +16,17 @@ class FeedView extends Component {
   state = {
     creatingPost: false,
     posts: [],
+    tabValue: 0
   }
 
   componentDidMount() {
     this.getPosts()
   }
 
-  async getPosts() {
-    const params = { sort: 'nearby' }
+  async getPosts(params = {}) {
+    console.log(params)
     try {
-      const res = await getPosts()
+      const res = await getPosts(params)
       this.setState({posts: res.data.posts})
     }
     catch(e) {
@@ -58,20 +64,39 @@ class FeedView extends Component {
     }
   }
 
+  handleTab(event, value) {
+    this.setState({ tabValue: value })
+    const params = value ? { sort: 'nearby' } : {}
+    this.getPosts(params)
+  }
+
   render() {
     return (
-      <div className="Feed">
-        {
-          this.state.posts.map(post => <FeedItem key={post.id} post={post} addComment={(comment) => this.addComment(comment, post.id)}/>)
-        }
-        <Button variant="contained" color="primary" className="AddPost" onClick={() => this.setState({creatingPost: true})}>
-          Create Post
-        </Button>
-        <NewPost 
-          open={this.state.creatingPost} 
-          close={() => this.setState({creatingPost: false})}
-          onSubmit={(post) => this.createPost(post)}
-        />
+      <div>
+        <AppBar position="static" color="default">
+          <Toolbar>
+            <Typography variant="h6" color="inherit">
+              Feed
+            </Typography>
+          </Toolbar>
+          <Tabs value={this.state.tabValue} onChange={(e, v) => this.handleTab(e, v)} centered>
+            <Tab label="Recent" />
+            <Tab label="Nearby" />
+          </Tabs>
+        </AppBar>
+        <div className="Feed">
+          {
+            this.state.posts.map(post => <FeedItem key={post.id} post={post} addComment={(comment) => this.addComment(comment, post.id)}/>)
+          }
+          <Button variant="contained" color="primary" className="AddPost" onClick={() => this.setState({creatingPost: true})}>
+            Create Post
+          </Button>
+          <NewPost 
+            open={this.state.creatingPost} 
+            close={() => this.setState({creatingPost: false})}
+            onSubmit={(post) => this.createPost(post)}
+          />
+        </div>
       </div>
     );
   }
