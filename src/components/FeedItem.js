@@ -19,22 +19,22 @@ import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 
 class FeedItem extends React.Component {
+
+  state = {
+    body: ''
+  }
+
   render() {
+    const date = new Date(this.props.post.created_at)
     return (
       <Card className="FeedItem">
         <CardHeader
-          avatar={<Avatar aria-label="User">Aldo</Avatar>}
-          // action={
-          // <IconButton>
-          // <MoreVertIcon />
-          // </IconButton>
-          // }
-          title="In search of water"
-          subheader="September 14, 2016"
+          title={this.props.post.user.username}
+          subheader={date.toDateString()}
         />
         <CardContent>
           <Typography component="p">
-            In need of water. anyone know which stores still have any in stock?
+            {this.props.post.body}
           </Typography>
         </CardContent>
         <CardActions disableActionSpacing>
@@ -48,28 +48,29 @@ class FeedItem extends React.Component {
           }
         </CardActions>
         <List component="nav">
-          <ListItem>
-            <Avatar aria-label="User">Vee</Avatar>
-            <ListItemText primary="no water by lake worth" />
-            {/* <ListItemText primary="Comments" /> */}
-          </ListItem>
-          <Divider inset />
-          <ListItem>
-            <Avatar aria-label="User">Greg</Avatar>
-            <ListItemText primary="Bocs has Water but over priced" />
-            {/* <ListItemText primary="Comments" /> */}
-          </ListItem>
-          <Divider inset />
+          {
+            this.props.post.comments.map(comment => {
+              return (
+                <ListItem key={comment.id}>
+                  <Avatar>P</Avatar>
+                  <ListItemText primary={comment.body} />
+                <Divider inset />
+                </ListItem>
+              )
+            })
+          }
           <ListItem className="comment-input">
             <TextField
+              onChange={(e) => this.setState({body: e.target.value})}
               label="Enter Comment"
-              // placeholder="Comment"
+              value={this.state.body}
               multiline
               fullWidth
               margin="normal"
               variant="outlined"
             />
             <Button
+              onClick={() => this.props.addComment(this.state) && this.setState({body: ''})}
               variant="fab"
               color="primary"
               aria-label="Add"

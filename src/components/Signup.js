@@ -5,11 +5,14 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import "./Signup.css";
 
+import Locations from './Locations.js'
+
 class Signup extends Component {
   state = {
     username: '',
     password: '',
   }
+
 
   render() {
     return (
@@ -34,6 +37,7 @@ class Signup extends Component {
               name="password"
               onChange={(e) => this.setState({ password: e.target.value })}
             />
+            
           </CardContent>
           </Grid>
           <br />

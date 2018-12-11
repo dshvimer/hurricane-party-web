@@ -19,3 +19,9 @@ body {
   align-items: center;
   background-color: rgba(0,0,0,0.5);
 }
+
+.AddPost {
+  position: fixed !important;
+  bottom: 20px;
+  right: 20px;
+}
